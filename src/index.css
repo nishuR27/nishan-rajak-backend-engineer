@@ -113,6 +113,74 @@
   animation: laser-flow 15s ease infinite;
 }
 
+/* Marquee animation for skills */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 25s linear infinite;
+}
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Section divider glow line */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    hsl(270 80% 60% / 0.4) 30%,
+    hsl(280 90% 65% / 0.6) 50%,
+    hsl(270 80% 60% / 0.4) 70%,
+    transparent 100%
+  );
+}
+
+/* Click spark effect */
+@keyframes spark {
+  0% { transform: scale(0) rotate(0deg); opacity: 1; }
+  50% { opacity: 1; }
+  100% { transform: scale(1) rotate(180deg); opacity: 0; }
+}
+.click-spark {
+  position: relative;
+  overflow: hidden;
+}
+.click-spark::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  opacity: 0;
+  background: linear-gradient(135deg, hsl(270 80% 60% / 0.4), hsl(280 90% 65% / 0.4));
+  transition: opacity 0.3s;
+}
+.click-spark:active::after {
+  opacity: 1;
+  animation: spark 0.4s ease-out;
+}
+
+/* Loader */
+@keyframes loader-pulse {
+  0%, 100% { transform: scale(0.8); opacity: 0.3; }
+  50% { transform: scale(1.2); opacity: 1; }
+}
+.loader-dot {
+  animation: loader-pulse 1.4s ease-in-out infinite;
+}
+.loader-dot:nth-child(2) { animation-delay: 0.2s; }
+.loader-dot:nth-child(3) { animation-delay: 0.4s; }
+
+/* Grid pattern overlay */
+.grid-pattern {
+  background-image: 
+    linear-gradient(hsl(270 15% 15% / 0.3) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(270 15% 15% / 0.3) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
 /* Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
@@ -126,4 +194,9 @@
 }
 ::-webkit-scrollbar-thumb:hover {
   background: hsl(270 80% 60% / 0.5);
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
 }
